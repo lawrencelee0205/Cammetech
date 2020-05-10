@@ -22,6 +22,7 @@ namespace v3x.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
+            
             return View(await _context.People.ToListAsync());
         }
 
