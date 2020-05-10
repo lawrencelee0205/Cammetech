@@ -55,10 +55,10 @@ namespace v3x.Controllers
        
         
         [HttpPost]
-        public async Task<IActionResult> Login(string Email,string Password)
+        public async Task<IActionResult> Login(string Name,string Password)
         {
             var people = await _context.People
-                 .FirstOrDefaultAsync(m => m.Email == Email && m.Password == Password);            
+                 .FirstOrDefaultAsync(m => m.Name == Name && m.Password == Password);            
 
             HttpContext.Session.SetInt32("Session_Id", people.Id);
             HttpContext.Session.SetString("Session_Role", people.Role);
