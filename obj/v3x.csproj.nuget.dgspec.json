@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\v3x\\v3x.csproj": {}
+    "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\Cammetech\\v3x.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\v3x\\v3x.csproj": {
+    "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\Cammetech\\v3x.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\v3x\\v3x.csproj",
+        "projectUniqueName": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\Cammetech\\v3x.csproj",
         "projectName": "v3x",
-        "projectPath": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\v3x\\v3x.csproj",
+        "projectPath": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\Cammetech\\v3x.csproj",
         "packagesPath": "C:\\Users\\lawre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\v3x\\obj\\",
+        "outputPath": "C:\\Users\\lawre\\Desktop\\Assignment\\AppDev\\Cammetech\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lawre\\AppData\\Roaming\\NuGet\\NuGet.Config",

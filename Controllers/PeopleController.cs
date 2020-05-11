@@ -62,6 +62,8 @@ namespace v3x.Controllers
                 _context.Add(people);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
+                
             }
             return View(people);
         }
