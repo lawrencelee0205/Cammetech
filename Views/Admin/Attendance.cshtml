@@ -30,16 +30,42 @@
             var status = document.createElement("TD");
             var date = document.createElement("TD");
 
+            var select = document.createElement("SELECT");
+            select.setAttribute("id", "mySelect");
+
+            var opt1 = document.createElement("option");
+            opt1.setAttribute("value", "On");
+            var opt1_text = document.createTextNode("On");
+            opt1.appendChild(opt1_text)
+
+            var opt2 = document.createElement("option");
+            opt2.setAttribute("value", "Off");
+            var opt2_text = document.createTextNode("Off");
+            opt2.appendChild(opt2_text)
+
+            var opt3 = document.createElement("option");
+            opt3.setAttribute("value", "Absent");
+            var opt3_text = document.createTextNode("Absent");
+            opt3.appendChild(opt3_text)
+
+            var opt4 = document.createElement("option");
+            opt4.setAttribute("value", "Leave");
+            var opt4_text = document.createTextNode("Leave");
+            opt4.appendChild(opt4_text)
+
+
+
             date.innerHTML = StartDate.toLocaleDateString()
-            status.innerHTML = "<select class='dropdown'>" +
-                "<option value='On'> On</option >" +
-                "<option value='Off'> Off</option >" +
-                "<option value='Absent'> Absent</option >" +
-                "<option value='Leave'> Leave</option >" +
-                "</select>"
+
+            select.appendChild(opt1)
+            select.appendChild(opt2)
+            select.appendChild(opt3)
+            select.appendChild(opt4)
+            status.appendChild(select)
 
             row.appendChild(date);
             row.appendChild(status);
+
             body.appendChild(row);
             table.appendChild(body);
         }
@@ -47,20 +73,22 @@
     }
 
     function chgJSON() {
-        var myTab = document.getElementById('myTable');
 
-        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
-        for (i = 1; i < myTab.rows.length; i++) {
+        let options = { 0:"On", 1:"Off", 2:"Absent" ,3:"Leave" }
 
-            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
-            var objCells = myTab.rows.item(i).cells;
+        var table = document.getElementById("myTable");
 
-            var date = objCells.item[0].value
+        for (var i = 1; i < table.rows.length; i++) {
 
-            console.log(date)
-           
+            var row = table.rows[i]
+            var x = row.cells[0].innerHTML    
+            var y = row.cells[1].childNodes[0]["options"]["selectedIndex"]    
+
+            var status = options[y]
+
+            console.log(x)
+            console.log(status)
         }
-
     }
 </script>
 
