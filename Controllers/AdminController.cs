@@ -25,6 +25,14 @@ namespace v3x.Controllers
             return View();
         }
 
+        public IActionResult Attendance()
+        {
+            var admin = _context.People.Where(a => a.Role == "Employee");
+            ViewData["Employee"] = admin.ToList();
+
+            return View();
+        }
+
         public IActionResult EmployeeTable()
         {
             var admin = _context.People.Where(a => a.Role == "Employee");

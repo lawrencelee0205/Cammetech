@@ -1,7 +1,89 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@model v3x.Models.People
 @{
     ViewData["Title"] = "Attendance";
+    Layout = "_Profile";
+    DateTime StartDate = new DateTime();
+    DateTime EndDate = new DateTime();
+
 }
 
+<script>
+    function setDate() {
+
+
+        var StartDate = document.getElementById("start_date").value
+        var EndDate = document.getElementById("end_date").value
+
+        StartDate = new Date(StartDate)
+        EndDate = new Date(EndDate)
+
+        var table = document.getElementById("myTable")
+
+        if (table.rows.length > 0) {
+            for (var i = table.rows.length - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+        }
+        
+
+        // To calculate the time difference of two dates
+        //var Difference_In_Time = EndDate.getTime() - StartDate.getTime();
+
+        // To calculate the no. of days between two dates
+        //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+
+        var body = document.createElement("TBODY");
+
+        for (StartDate; StartDate <= EndDate; StartDate.setDate(StartDate.getDate() + 1)) {
+
+            var row = document.createElement("TR");
+            var status = document.createElement("TD");
+            var date = document.createElement("TD");
+
+            date.innerHTML = StartDate.toLocaleDateString()
+            status.innerHTML = "<select>" +
+                "<option value='On'> On</option >" +
+                "<option value='Off'> Off</option >" +
+                "<option value='Absent'> Absent</option >" +
+                "<option value='Leave'> Leave</option >" +
+                "</select>"
+
+            row.appendChild(date);
+            row.appendChild(status);
+            body.appendChild(row);
+            document.getElementById("myTable").appendChild(body);
+        }
+
+    }
+</script>
+
 <h1>Attendance</h1>
+<p>
+    Choose an employee's name:
+    <select>
+        @foreach (var emp in ViewData["Employee"] as IList<People>)
+        {
+            <option value="@emp.Name">@emp.Name</option>
+        }
+    </select>
+</p>
+<div>
+    Start date: <input type="date" id="start_date" />
+    End date: <input type="date" id="end_date" />
+    <button onclick="setDate()">Go</button>
+</div>
+
+<table>
+</table>
+
+<table id="myTable">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+</table>
 

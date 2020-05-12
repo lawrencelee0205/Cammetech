@@ -342,3 +342,4 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\AddAdmin.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\Report.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddEmp.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Attendance.cshtml.g.cs
