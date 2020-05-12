@@ -25,18 +25,23 @@ namespace v3x.Controllers
             return View();
         }
 
+        public IActionResult AddAttendance()
+        {
+            return RedirectToAction("Attendance");
+        }
+
         public IActionResult Attendance()
         {
-            var admin = _context.People.Where(a => a.Role == "Employee");
-            ViewData["Employee"] = admin.ToList();
+            var emp = _context.People.Where(e => e.Role == "Employee");
+            ViewData["Employee"] = emp.ToList();
 
             return View();
         }
 
         public IActionResult EmployeeTable()
         {
-            var admin = _context.People.Where(a => a.Role == "Employee");
-            ViewData["Employee"] = admin.ToList();
+            var emp = _context.People.Where(e => e.Role == "Employee");
+            ViewData["Employee"] = emp.ToList();
 
             return View();
         }

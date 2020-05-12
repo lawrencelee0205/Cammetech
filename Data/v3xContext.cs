@@ -15,5 +15,6 @@ namespace v3x.Data
         }
 
         public DbSet<People> People { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
     }
 }

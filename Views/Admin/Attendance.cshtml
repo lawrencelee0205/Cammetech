@@ -3,20 +3,15 @@
 @{
     ViewData["Title"] = "Attendance";
     Layout = "_Profile";
-    DateTime StartDate = new DateTime();
-    DateTime EndDate = new DateTime();
+
 
 }
-
 <script>
     function setDate() {
 
 
-        var StartDate = document.getElementById("start_date").value
-        var EndDate = document.getElementById("end_date").value
-
-        StartDate = new Date(StartDate)
-        EndDate = new Date(EndDate)
+        var StartDate = new Date(document.getElementById("start_date").value)
+        var EndDate = new Date(document.getElementById("end_date").value)
 
         var table = document.getElementById("myTable")
 
@@ -25,13 +20,6 @@
                 table.deleteRow(i);
             }
         }
-        
-
-        // To calculate the time difference of two dates
-        //var Difference_In_Time = EndDate.getTime() - StartDate.getTime();
-
-        // To calculate the no. of days between two dates
-        //var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
 
 
         var body = document.createElement("TBODY");
@@ -43,7 +31,7 @@
             var date = document.createElement("TD");
 
             date.innerHTML = StartDate.toLocaleDateString()
-            status.innerHTML = "<select>" +
+            status.innerHTML = "<select class='dropdown'>" +
                 "<option value='On'> On</option >" +
                 "<option value='Off'> Off</option >" +
                 "<option value='Absent'> Absent</option >" +
@@ -53,7 +41,24 @@
             row.appendChild(date);
             row.appendChild(status);
             body.appendChild(row);
-            document.getElementById("myTable").appendChild(body);
+            table.appendChild(body);
+        }
+
+    }
+
+    function chgJSON() {
+        var myTab = document.getElementById('myTable');
+
+        // LOOP THROUGH EACH ROW OF THE TABLE AFTER HEADER.
+        for (i = 1; i < myTab.rows.length; i++) {
+
+            // GET THE CELLS COLLECTION OF THE CURRENT ROW.
+            var objCells = myTab.rows.item(i).cells;
+
+            var date = objCells.item[0].value
+
+            console.log(date)
+           
         }
 
     }
@@ -75,9 +80,6 @@
     <button onclick="setDate()">Go</button>
 </div>
 
-<table>
-</table>
-
 <table id="myTable">
     <thead>
         <tr>
@@ -86,4 +88,6 @@
         </tr>
     </thead>
 </table>
+
+<button onclick="chgJSON()">Submit</button>
 
