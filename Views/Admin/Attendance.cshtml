@@ -74,31 +74,67 @@
 
     function chgJSON() {
 
+        var result = []
+
         let options = { 0:"On", 1:"Off", 2:"Absent" ,3:"Leave" }
 
-        var table = document.getElementById("myTable");
+        var table = document.getElementById("myTable")
 
         for (var i = 1; i < table.rows.length; i++) {
 
             var row = table.rows[i]
-            var x = row.cells[0].innerHTML    
-            var y = row.cells[1].childNodes[0]["options"]["selectedIndex"]    
+            var x = row.cells[0].childNodes[0]["wholeText"]
+            var y = row.cells[1].childNodes[0]["options"]["selectedIndex"]
 
             var status = options[y]
 
-            console.log(x)
-            console.log(status)
+            var data = { Id:"", Date:"", EmployeeId:"", Status:"" }
+
+            var e = document.getElementById("empId");
+            var empId = e.options[e.selectedIndex].value;
+
+            data["Id"] = 0
+            data["Date"] = x
+            data["EmployeeId"] = empId            
+            data["Status"] = status
+
+
+
+            
+
+            result.push(data)
+
         }
+
+
+
+        console.log(result)
+
+         $.ajax({
+                     url: '/Admin/AddAttendance',
+                     type: "POST",
+                     data: JSON.stringify(result),
+                     traditional:true,
+                     dataType: "json",
+                     contentType: "application/json; charset=utf-8",
+                     error: function () {
+                         alert("Nothing");
+                     },
+                     success: function (r) {
+                         alert(r + " record(s) inserted.");
+                     }
+                 });
+
     }
 </script>
 
 <h1>Attendance</h1>
 <p>
     Choose an employee's name:
-    <select>
+    <select id="empId">
         @foreach (var emp in ViewData["Employee"] as IList<People>)
         {
-            <option value="@emp.Name">@emp.Name</option>
+            <option value="@emp.Id">@emp.Name</option>
         }
     </select>
 </p>

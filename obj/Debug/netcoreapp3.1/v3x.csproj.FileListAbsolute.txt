@@ -305,7 +305,6 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\runti
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.csprojAssemblyReference.cache
-C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.RazorAssemblyInfo.cache
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.RazorAssemblyInfo.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.AssemblyInfoInputs.cache
@@ -343,3 +342,11 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\Report.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddEmp.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Attendance.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.MvcApplicationPartsAssemblyInfo.cache

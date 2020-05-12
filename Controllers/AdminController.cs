@@ -6,6 +6,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using v3x.Models;
 using v3x.Data;
+using System.Collections.Generic;
+using System.Diagnostics;
+
 
 namespace v3x.Controllers
 {
@@ -13,6 +16,8 @@ namespace v3x.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly v3xContext _context;
+
+
 
         public AdminController(ILogger<AdminController> logger, v3xContext context)
         {
@@ -25,10 +30,13 @@ namespace v3x.Controllers
             return View();
         }
 
-        public IActionResult AddAttendance()
-        {
-            return RedirectToAction("Attendance");
+       [HttpPost]
+        public ActionResult AddAttendance(List<Attendance> attendances)
+        {  
+
+            return Json(attendances.Count());
         }
+
 
         public IActionResult Attendance()
         {
@@ -64,8 +72,8 @@ namespace v3x.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create_Emp([Bind("Id,Name,Password,Role,Tel,Email")] People people)
-        {           
-            if(CheckExist(people.Name))
+        {
+            if (CheckExist(people.Name))
             {
                 return RedirectToAction(nameof(EmployeeTable));
             }
@@ -82,9 +90,9 @@ namespace v3x.Controllers
 
         private bool CheckExist(string Name)
         {
-            var emp = _context.People.Where(e => e.Name==Name);
+            var emp = _context.People.Where(e => e.Name == Name);
 
-            if(emp!=null)
+            if (emp != null)
             {
                 return true;
             }
