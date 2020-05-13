@@ -18,11 +18,13 @@ Password: emp2<br/>
 - Superadmin can add / delete admin
 - Superadmin can view a list of admin
 - Superadmin can view his own profile
-<br/>
+
+
 - Admin can add / delete employee
 - Admin can view a list of employee
 - Admin can enter attendance for each employee for desired period.
 - Admin can view the attendance of the employee
 - Admin can view his own profile
-<br/>
+
+
 - Employee can view his own profile
