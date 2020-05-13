@@ -3,13 +3,13 @@
 
 ## Login username and password:
 ### Superadmin:
-Name: Lee Keen Shen
-Password: 12345
+Name: Lee Keen Shen<br/>
+Password: 12345<br/>
 
 ### Admin:
-Name: CS
-Password: 12345
+Name: CS<br/>
+Password: 12345<br/>
 
 ### Employee:
-Name: emp2
-Password: emp2
+Name: emp2<br/>
+Password: emp2<br/>
