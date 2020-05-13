@@ -11,12 +11,14 @@ namespace v3x.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [Required]
         public int EmployeeId { get; set; }
 
         [Required]
         public string Status { get; set; }
+
+        
     }
 }

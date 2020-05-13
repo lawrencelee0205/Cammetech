@@ -6,7 +6,11 @@
 
 
 }
+
 <script>
+
+
+
     function setDate() {
 
 
@@ -72,11 +76,12 @@
 
     }
 
+
     function chgJSON() {
 
         var result = []
 
-        let options = { 0:"On", 1:"Off", 2:"Absent" ,3:"Leave" }
+        let options = { 0: "On", 1: "Off", 2: "Absent", 3: "Leave" }
 
         var table = document.getElementById("myTable")
 
@@ -88,42 +93,52 @@
 
             var status = options[y]
 
-            var data = { Id:"", Date:"", EmployeeId:"", Status:"" }
+            var mydata = { Date: "", EmployeeId: 0, Status: "" }
 
             var e = document.getElementById("empId");
             var empId = e.options[e.selectedIndex].value;
 
-            data["Id"] = 0
-            data["Date"] = x
-            data["EmployeeId"] = empId            
-            data["Status"] = status
-
-
-
             
 
-            result.push(data)
+            //mydata["Id"] = 0
+            mydata["Date"] = x
+            mydata["EmployeeId"] = parseInt(empId)
+            mydata["Status"] = status
+
+            result.push(mydata)
 
         }
+        /*
+        testdata = [{
 
-
+            Id: 0,
+            Date: "12/5/2020",
+            EmployeeId: 2,
+            Status: "On"
+        },
+        {
+            Id: 1,
+            Date: "12/8/2020",
+            EmployeeId: 3,
+            Status: "Off"
+        }]
+        */
+        $.ajax({
+            url: '/Admin/AddAttendance',
+            type: "POST",
+            data: JSON.stringify(result),
+            traditional: true,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            error: function () {
+                alert("Nothing");
+            },
+            success: function (r) {
+                alert(r + " record(s) inserted.");
+            }
+        });
 
         console.log(result)
-
-         $.ajax({
-                     url: '/Admin/AddAttendance',
-                     type: "POST",
-                     data: JSON.stringify(result),
-                     traditional:true,
-                     dataType: "json",
-                     contentType: "application/json; charset=utf-8",
-                     error: function () {
-                         alert("Nothing");
-                     },
-                     success: function (r) {
-                         alert(r + " record(s) inserted.");
-                     }
-                 });
 
     }
 </script>

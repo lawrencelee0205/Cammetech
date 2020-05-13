@@ -31,10 +31,17 @@ namespace v3x.Controllers
         }
 
        [HttpPost]
-        public ActionResult AddAttendance(List<Attendance> attendances)
-        {  
+        public async Task<IActionResult> AddAttendance([FromBody] List<Attendance> attendance)
+        {
+            var result = attendance.Count();
 
-            return Json(attendances.Count());
+            foreach(var a in attendance)
+            {
+                _context.Add(a);
+                await _context.SaveChangesAsync();                
+            }
+
+            return Json(result);
         }
 
 
