@@ -44,6 +44,11 @@ namespace v3x.Controllers
             return Json(result);
         }
 
+        public async Task<IActionResult> AttendanceList()
+        {
+
+            return View(await _context.Attendance.ToListAsync());
+        }
 
         public IActionResult Attendance()
         {
