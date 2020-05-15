@@ -20,7 +20,7 @@ Password: emp2<br/>
 - Superadmin can view his own profile  
 
 
-- Admin can add / delete employee
+- Admin can add / delete / update employee
 - Admin can view a list of employee
 - Admin can view details of employee
 - Admin can view the attendance of the employee
