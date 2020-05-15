@@ -9,8 +9,6 @@
 
 <script>
 
-
-
     function setDate() {
 
 
@@ -97,10 +95,7 @@
 
             var e = document.getElementById("empId");
             var empId = e.options[e.selectedIndex].value;
-
-            
-
-            //mydata["Id"] = 0
+    
             mydata["Date"] = x
             mydata["EmployeeId"] = parseInt(empId)
             mydata["Status"] = status
@@ -108,21 +103,7 @@
             result.push(mydata)
 
         }
-        /*
-        testdata = [{
 
-            Id: 0,
-            Date: "12/5/2020",
-            EmployeeId: 2,
-            Status: "On"
-        },
-        {
-            Id: 1,
-            Date: "12/8/2020",
-            EmployeeId: 3,
-            Status: "Off"
-        }]
-        */
         $.ajax({
             url: '/Admin/AddAttendance',
             type: "POST",
@@ -143,7 +124,7 @@
     }
 </script>
 
-<h1>Attendance</h1>
+<h2>Attendance</h2>
 <p>
     Choose an employee's name:
     <select id="empId">

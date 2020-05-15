@@ -39,8 +39,7 @@ namespace v3x.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Login(string Name, string Password)
-        {
-            Debug.Write($"Name: {Name}, Password: {Password}");
+        {            
 
             var people = await _context.People.FirstOrDefaultAsync(m => m.Name == Name && m.Password == Password);
 

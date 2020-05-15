@@ -30,15 +30,15 @@ namespace v3x.Controllers
             return View();
         }
 
-       [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> AddAttendance([FromBody] List<Attendance> attendance)
         {
             var result = attendance.Count();
 
-            foreach(var a in attendance)
+            foreach (var a in attendance)
             {
                 _context.Add(a);
-                await _context.SaveChangesAsync();                
+                await _context.SaveChangesAsync();
             }
 
             return Json(result);
@@ -114,11 +114,11 @@ namespace v3x.Controllers
             return View("UpdateEmployee", empToUpdate);
         }
 
-        public async Task<IActionResult> EmployeeDetails(int ? id)
-        {    
+        public async Task<IActionResult> EmployeeDetails(int? id)
+        {
 
-            var emp = await _context.People.FirstOrDefaultAsync(e => e.Id == id &&  e.Role == "employee");            
-            var job = await _context.Job.FirstOrDefaultAsync(j => j.PeopleId == id );
+            var emp = await _context.People.FirstOrDefaultAsync(e => e.Id == id && e.Role == "employee");
+            var job = await _context.Job.FirstOrDefaultAsync(j => j.PeopleId == id);
 
             ViewData["BasePay"] = job.BasePay.ToString();
             ViewData["Position"] = job.Position.ToString();
@@ -143,29 +143,50 @@ namespace v3x.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create_Emp([Bind("Id,Name,Password,Role,Tel,Email")] People people)
+        public async Task<IActionResult> Create_Emp(string position, double basePay, string status, [Bind("Name,Password,Role,Tel,Email,Nationality,DateOfBirth,Address")] People people)
         {
+            Debug.WriteLine($"Value : {position} {basePay} {status} {people.Name}");
+
             if (CheckExist(people.Name))
             {
+                Debug.WriteLine("This run");
                 return RedirectToAction(nameof(EmployeeTable));
             }
 
-            if (ModelState.IsValid)
+
+
+            _context.Add(people);
+            await _context.SaveChangesAsync();
+
+            var emp = await _context.People.FirstOrDefaultAsync(e => e.Name == people.Name);
+
+            Debug.WriteLine($"Emp Id: {emp.Id}");
+            var job = new Job
             {
-                _context.Add(people);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(EmployeeTable));
-            }
+                
+                Position = position,
+                BasePay = basePay,
+                Status = status,
+                PeopleId = emp.Id
+            };
+            _context.Add(job);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(EmployeeTable));
+
+
+
         }
 
         private bool CheckExist(string Name)
         {
-            var emp = _context.People.Where(e => e.Name == Name);
+            var emp = _context.People.FirstOrDefault(e => e.Name == Name);
+
+            
 
             if (emp != null)
             {
+                
                 return true;
             }
 

@@ -1,7 +1,6 @@
 use v3x
-update dbo.Job
-set BasePay=800
-where PeopleId = 2
+delete from dbo.Job
+where JobId = 1 or JobId = 3
 
 go
 select * from dbo.Job
