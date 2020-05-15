@@ -30,15 +30,63 @@ namespace v3x.Controllers
             return View();
         }
 
-       [HttpPost]
+        public async Task<IActionResult> UpdateEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var people = await _context.People.FindAsync(id);
+
+            if (people == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["EmpId"] = people.Id;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int ? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var empToUpdate = await _context.People.FirstOrDefaultAsync(e => e.Id == id);
+            if (await TryUpdateModelAsync<People>(
+                empToUpdate,
+                "",
+                e => e.Tel, e => e.Email, e => e.Nationality, e => e.Address, e => e.DateOfBirth))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(EmployeeTable));
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+            }
+            return View("UpdateEmployee",empToUpdate);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AddAttendance([FromBody] List<Attendance> attendance)
         {
             var result = attendance.Count();
 
-            foreach(var a in attendance)
+            foreach (var a in attendance)
             {
                 _context.Add(a);
-                await _context.SaveChangesAsync();                
+                await _context.SaveChangesAsync();
             }
 
             return Json(result);
@@ -110,6 +158,11 @@ namespace v3x.Controllers
             }
 
             return false;
+        }
+
+        private bool PeopleExists(int id)
+        {
+            return _context.People.Any(e => e.Id == id);
         }
     }
 }

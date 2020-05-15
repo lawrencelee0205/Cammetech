@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace v3x.Models
 {
-    public class Attendance
+    public class SalaryModification
     {
         public int Id { get; set; }
 
@@ -14,12 +14,14 @@ namespace v3x.Models
         public string Date { get; set; }
 
         [Required]
-        
-        public int EmployeeId { get; set; }
+
+        public double Bonus { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public double TotalRate { get; set; }
+        public int EPFId { get; set; }
+        public int SocsoId { get; set; }
+        public int EmployeeId { get; set; }
 
-        
     }
 }

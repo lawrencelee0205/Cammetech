@@ -9,21 +9,19 @@ namespace v3x.Models
     public class People
     {
         public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
-
         [Required]
         public string Password { get; set; }
-
-        [Required]
-        public string Role { get; set; }
-
-        [Required]
-        public string Tel { get; set; }
-
         [Required]
         public string Email { get; set; }
+        [Required]
+        public string Tel { get; set; }
+        [Required]
+        public string Role { get; set; }
+        public string Nationality { get; set; }        
+        public string DateOfBirth { get; set; }
+        public string Address { get; set; }
 
     }
 }

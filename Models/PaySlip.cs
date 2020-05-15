@@ -6,20 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace v3x.Models
 {
-    public class Attendance
+    public class PaySlip
     {
         public int Id { get; set; }
-
-        [Required]
         public string Date { get; set; }
+        public int SalaryModificationId { get; set; }
 
-        [Required]
-        
-        public int EmployeeId { get; set; }
-
-        [Required]
-        public string Status { get; set; }
-
-        
     }
 }
