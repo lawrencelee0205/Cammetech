@@ -27,7 +27,10 @@ namespace v3x.Models
                         Password = "12345",
                         Email = "lawrencelee0205@gmail.com",
                         Role = "superadmin",
-                        Tel = "016-5654444"
+                        Tel = "016-5654444",
+                        Nationality = "Malaysian",
+                        DateOfBirth = "01/02/1950",
+                        Address = "Ipoh Perak"
                     },
                     new People
                     {
@@ -35,7 +38,10 @@ namespace v3x.Models
                         Password = "12345",
                         Email = "sulphate@gmail.com",
                         Role = "admin",
-                        Tel = "016-999999"
+                        Tel = "016-999999",
+                        Nationality = "Malaysian",
+                        DateOfBirth = "31/02/2030",
+                        Address = "Penang"
                     },
                     new People
                     {
@@ -43,7 +49,10 @@ namespace v3x.Models
                         Password = "12345",
                         Email = "yp@gmail.com",
                         Role = "employee",
-                        Tel = "016-111111"
+                        Tel = "016-111111",
+                        Nationality = "Malaysian",
+                        DateOfBirth = "01/02/1888",
+                        Address = "Johor Tebrau"
                     }
 
 

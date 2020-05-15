@@ -1,5 +1,4 @@
 use v3x
-select * from dbo.Attendance
-order by Date
+select * from dbo.People
 go
 

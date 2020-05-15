@@ -16,5 +16,10 @@ namespace v3x.Data
 
         public DbSet<People> People { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<EPF> EPF { get; set; }
+        public DbSet<Job> Job { get; set; }        
+        public DbSet<SalaryModification> SalaryModification { get; set; }
+        public DbSet<Socso> Socso { get; set; }
+        public DbSet<PaySlip> PaySlip { get; set; }
     }
 }

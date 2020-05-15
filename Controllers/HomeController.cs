@@ -40,9 +40,14 @@ namespace v3x.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string Name, string Password)
         {
+            Debug.Write($"Name: {Name}, Password: {Password}");
 
-            var people = await _context.People
-                 .FirstOrDefaultAsync(m => m.Name == Name && m.Password == Password);
+            var people = await _context.People.FirstOrDefaultAsync(m => m.Name == Name && m.Password == Password);
+
+            if(people==null)
+            {
+                return NotFound();
+            }
 
             HttpContext.Session.SetInt32("Session_Id", people.Id);
             HttpContext.Session.SetString("Session_Role", people.Role);

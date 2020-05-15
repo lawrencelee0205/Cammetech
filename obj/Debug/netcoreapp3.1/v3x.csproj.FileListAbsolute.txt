@@ -351,3 +351,4 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Syste
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AttendanceList.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\UpdateEmployee.cshtml.g.cs
