@@ -8,21 +8,24 @@
 }
 
 <script>
+
+
+
     function setDate() {
+
 
         var StartDate = new Date(document.getElementById("start_date").value)
         var EndDate = new Date(document.getElementById("end_date").value)
 
         var table = document.getElementById("myTable")
 
-        //Delete table rows if not empty
         if (table.rows.length > 0) {
             for (var i = table.rows.length - 1; i > 0; i--) {
                 table.deleteRow(i);
             }
         }
 
-        //Create table
+
         var body = document.createElement("TBODY");
 
         for (StartDate; StartDate <= EndDate; StartDate.setDate(StartDate.getDate() + 1)) {
@@ -58,14 +61,12 @@
 
             date.innerHTML = StartDate.toLocaleDateString()
 
-            //Create a selection of input
             select.appendChild(opt1)
             select.appendChild(opt2)
             select.appendChild(opt3)
             select.appendChild(opt4)
             status.appendChild(select)
 
-            //Create table row
             row.appendChild(date);
             row.appendChild(status);
 
@@ -99,7 +100,7 @@
 
             
 
-            
+            //mydata["Id"] = 0
             mydata["Date"] = x
             mydata["EmployeeId"] = parseInt(empId)
             mydata["Status"] = status
@@ -107,7 +108,21 @@
             result.push(mydata)
 
         }
-       
+        /*
+        testdata = [{
+
+            Id: 0,
+            Date: "12/5/2020",
+            EmployeeId: 2,
+            Status: "On"
+        },
+        {
+            Id: 1,
+            Date: "12/8/2020",
+            EmployeeId: 3,
+            Status: "Off"
+        }]
+        */
         $.ajax({
             url: '/Admin/AddAttendance',
             type: "POST",

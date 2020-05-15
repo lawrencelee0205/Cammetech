@@ -14,7 +14,6 @@ namespace v3x.Models
         public string Date { get; set; }
 
         [Required]
-        
         public int EmployeeId { get; set; }
 
         [Required]
