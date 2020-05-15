@@ -1,4 +1,8 @@
 use v3x
-select * from dbo.People
+update dbo.Job
+set BasePay=800
+where PeopleId = 2
+
 go
+select * from dbo.Job
 

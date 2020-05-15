@@ -46,7 +46,8 @@ namespace v3x.Controllers
 
             if(people==null)
             {
-                return NotFound();
+                Response.WriteAsync("<script>alert('Invalid user or password')</script>");
+                return View("Index");
             }
 
             HttpContext.Session.SetInt32("Session_Id", people.Id);

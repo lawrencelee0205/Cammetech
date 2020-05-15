@@ -114,6 +114,17 @@ namespace v3x.Controllers
             return View("UpdateEmployee", empToUpdate);
         }
 
+        public async Task<IActionResult> EmployeeDetails(int ? id)
+        {    
+
+            var emp = await _context.People.FirstOrDefaultAsync(e => e.Id == id &&  e.Role == "employee");            
+            var job = await _context.Job.FirstOrDefaultAsync(j => j.PeopleId == id );
+
+            ViewData["BasePay"] = job.BasePay.ToString();
+            ViewData["Position"] = job.Position.ToString();
+
+            return View(emp);
+        }
 
         public IActionResult AddEmp()
         {

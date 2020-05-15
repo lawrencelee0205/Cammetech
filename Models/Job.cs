@@ -9,6 +9,8 @@ namespace v3x.Models
     {
         public int JobId { get; set; }
         public string Status { get; set; }
+
+        public double BasePay { get; set; }
         public string Position { get; set; }
         public int PeopleId { get; set; }
 

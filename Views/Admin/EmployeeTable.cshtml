@@ -28,7 +28,7 @@
             <td>@emp.Email</td>
             <td>
                 <a asp-action="UpdateEmployee" asp-route-id="@emp.Id">Edit</a> |
-                <a>Details</a> |
+                <a asp-action="EmployeeDetails" asp-route-id="@emp.Id">Details</a> |
                 <a asp-action="DeleteEmp" asp-route-id="@emp.Id">Delete</a>
             </td>
         </tr>
