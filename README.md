@@ -15,12 +15,12 @@ Name: emp2<br/>
 Password: emp2<br/>
 
 ## Available function:
-- Superadmin can add / delete admin
+- Superadmin can (add / delete) (admin / superadmin)
 - Superadmin can view a list of admin
 - Superadmin can view his own profile  
 
 
-- Admin can add / delete / update employee
+- Admin can (add / delete / update) employee
 - Admin can view a list of employee
 - Admin can view details of employee
 - Admin can view the attendance of the employee
