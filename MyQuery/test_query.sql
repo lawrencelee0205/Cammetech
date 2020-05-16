@@ -1,7 +1,7 @@
 use v3x
-delete from dbo.Job
-where JobId = 1 or JobId = 3
+select * from dbo.People
+where Role = 'admin'
 
 go
-select * from dbo.Job
+
 

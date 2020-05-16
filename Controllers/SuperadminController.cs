@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using v3x.Models;
 using v3x.Data;
+using System.Diagnostics;
 
 namespace v3x.Controllers
 {
@@ -43,21 +44,24 @@ namespace v3x.Controllers
             var people = await _context.People.FindAsync(id);
             _context.People.Remove(people);
             await _context.SaveChangesAsync();
-            return View("Index");
+            return RedirectToAction(nameof(AdminTable));
             
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create_Ad([Bind("Id,Name,Password,Role,Tel,Email")] People people)
+        public async Task<IActionResult> Create_Ad([Bind("Id,Name,Password,Role,Tel,Email,Nationality,DateOfBirth,Address")] People people)
         {
+            Debug.WriteLine($"Value: {people.Name}, {people.Email}");
             if (CheckExist(people.Name))
             {
+                Debug.WriteLine("This run");
                 return RedirectToAction(nameof(AdminTable));
             }
 
             if (ModelState.IsValid)
             {
+                Debug.WriteLine("Model valid");
                 _context.Add(people);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(AdminTable));
@@ -67,9 +71,9 @@ namespace v3x.Controllers
 
         private bool CheckExist(string Name)
         {
-            var emp = _context.People.Where(e => e.Name == Name);
+            var admin = _context.People.FirstOrDefault(a => a.Name == Name);
 
-            if (emp != null)
+            if (admin != null)
             {
                 return true;
             }
