@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using v3x.Data;
 
 namespace v3x.Migrations
 {
     [DbContext(typeof(v3xContext))]
-    partial class v3xContextModelSnapshot : ModelSnapshot
+    [Migration("20200516032048_add_advance_pay")]
+    partial class add_advance_pay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

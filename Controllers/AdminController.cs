@@ -56,7 +56,7 @@ namespace v3x.Controllers
         }
 
         [HttpPost, ActionName("ManageSalary")]
-        public async Task<IActionResult> ModifySalary([Bind("Date,Bonus,TotalRate,EPFId,SocsoId,JobId")]SalaryModification salary)
+        public async Task<IActionResult> ModifySalary([Bind("Date,Bonus,TotalRate,AdvancePay,EPFId,SocsoId,JobId")]SalaryModification salary)
         {
             _context.Add(salary);
             await _context.SaveChangesAsync();
