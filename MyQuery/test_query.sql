@@ -1,7 +1,4 @@
 use v3x
-select * from dbo.People
-where Role = 'admin'
 
+select * from dbo.Socso
 go
-
-

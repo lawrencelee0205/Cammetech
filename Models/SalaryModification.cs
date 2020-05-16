@@ -13,7 +13,7 @@ namespace v3x.Models
         public double TotalRate { get; set; }
         public int EPFId { get; set; }
         public int SocsoId { get; set; }
-        public int EmployeeId { get; set; }
+        public int JobId { get; set; }
 
     }
 }

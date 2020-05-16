@@ -353,3 +353,4 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.M
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AttendanceList.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\UpdateEmployee.cshtml.g.cs
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EmployeeDetails.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Admin\ManageSalary.cshtml.g.cs

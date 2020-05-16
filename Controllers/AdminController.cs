@@ -44,6 +44,27 @@ namespace v3x.Controllers
             return Json(result);
         }
 
+        public async Task<IActionResult> ManageSalary(int ? id)
+        {
+            var job = await _context.Job.FirstOrDefaultAsync(j => j.PeopleId == id);
+            var emp = await _context.People.FirstOrDefaultAsync(e => e.Id == id);
+
+            ViewData["JobId"] = job.JobId;
+            ViewData["EmpName"] = emp.Name;
+
+            return View();
+        }
+
+        [HttpPost, ActionName("ManageSalary")]
+        public async Task<IActionResult> ModifySalary([Bind("Date,Bonus,TotalRate,EPFId,SocsoId,JobId")]SalaryModification salary)
+        {
+            _context.Add(salary);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(EmployeeTable));
+        }
+
+
         public async Task<IActionResult> AttendanceList()
         {
 
