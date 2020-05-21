@@ -10,6 +10,7 @@ using v3x.Models;
 
 namespace v3x.Controllers
 {
+    [Route("BigHero")]
     public class PeopleController : Controller
     {
         private readonly v3xContext _context;
@@ -19,13 +20,16 @@ namespace v3x.Controllers
             _context = context;
         }
 
+        [Route("Hahaha")]
         // GET: People
         public async Task<IActionResult> Index()
         {
             
+            
             return View(await _context.People.ToListAsync());
         }
 
+        [Route("Hahaha/{id:int}", Name = "Test_name")]
         // GET: People/Details/5
         public async Task<IActionResult> Details(int? id)
         {

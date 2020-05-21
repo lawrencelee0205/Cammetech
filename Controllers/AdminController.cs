@@ -44,7 +44,7 @@ namespace v3x.Controllers
             return Json(result);
         }
 
-        public async Task<IActionResult> ManageSalary(int ? id)
+        public async Task<IActionResult> ManageSalary(int? id)
         {
             var job = await _context.Job.FirstOrDefaultAsync(j => j.PeopleId == id);
             var emp = await _context.People.FirstOrDefaultAsync(e => e.Id == id);
@@ -64,12 +64,68 @@ namespace v3x.Controllers
             return RedirectToAction(nameof(EmployeeTable));
         }
 
-
-        public async Task<IActionResult> AttendanceList()
+        public async Task<IActionResult> AttendanceTable()
         {
+            IList<AttendanceTable> AttendanceBody = new List<AttendanceTable>();
+            IDictionary<string, string> EmpStatus = new Dictionary<string, string>();
+           
+            var emp = (from p in _context.People
+                       join a in _context.Attendance
+                       on p.Id equals a.EmployeeId
+                       where p.Role == "employee"
+                       select new { 
+                            Name = p.Name,
+                            Date = a.Date,
+                            Status = a.Status
+                       });
 
-            return View(await _context.Attendance.ToListAsync());
+            ViewData["EmpName"] =  _context.People
+                                  .OrderBy(p => p.Id)
+                                  .Where(p => p.Role == "employee")
+                                  .Select(p => p.Name).ToList();
+
+            List<string> Unique_date = emp.Select(e => e.Date).Distinct().ToList();
+            int turn = 0;
+            foreach(var date in Unique_date)
+            {
+                var current_attendance = emp.Where(e => e.Date == date).ToList();
+                
+                foreach(var a in current_attendance)
+                {
+                    Debug.WriteLine("Turn :" + turn);
+                    Debug.WriteLine(a);
+                    
+                    EmpStatus.Add(a.Name,a.Status);                   
+
+                }
+
+                Debug.WriteLine("Dict");
+
+                foreach (KeyValuePair<string, string> item in EmpStatus)
+                {
+                    Debug.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
+                }
+
+                AttendanceBody.Add(new AttendanceTable() { Date = date,Status = new Dictionary<string,string> (EmpStatus)});
+                EmpStatus.Clear();
+                turn += 1;
+            }
+
+
+            
+            foreach(var a in AttendanceBody)
+            {
+                Debug.WriteLine("");
+                Debug.WriteLine(a.Date);
+                foreach (KeyValuePair<string, string> item in a.Status)
+                {                    
+                    Debug.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
+                }
+            }
+
+            return View(AttendanceBody);
         }
+
 
         public IActionResult Attendance()
         {
@@ -184,7 +240,7 @@ namespace v3x.Controllers
             Debug.WriteLine($"Emp Id: {emp.Id}");
             var job = new Job
             {
-                
+
                 Position = position,
                 BasePay = basePay,
                 Status = status,
@@ -203,11 +259,11 @@ namespace v3x.Controllers
         {
             var emp = _context.People.FirstOrDefault(e => e.Name == Name);
 
-            
+
 
             if (emp != null)
             {
-                
+
                 return true;
             }
 

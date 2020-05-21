@@ -60,6 +60,9 @@ namespace v3x
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+                endpoints.MapControllers();
             });
         }
     }
