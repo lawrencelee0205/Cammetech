@@ -84,43 +84,22 @@ namespace v3x.Controllers
                                   .Where(p => p.Role == "employee")
                                   .Select(p => p.Name).ToList();
 
-            List<string> Unique_date = emp.Select(e => e.Date).Distinct().ToList();
-            int turn = 0;
+            List<string> Unique_date = emp.OrderBy(e => e.Date).Select(e => e.Date).Distinct().ToList();
+            
             foreach(var date in Unique_date)
             {
                 var current_attendance = emp.Where(e => e.Date == date).ToList();
-                
+
+                Debug.WriteLine("Date: " + date);
+
                 foreach(var a in current_attendance)
                 {
-                    Debug.WriteLine("Turn :" + turn);
-                    Debug.WriteLine(a);
-                    
+                   
                     EmpStatus.Add(a.Name,a.Status);                   
-
-                }
-
-                Debug.WriteLine("Dict");
-
-                foreach (KeyValuePair<string, string> item in EmpStatus)
-                {
-                    Debug.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
                 }
 
                 AttendanceBody.Add(new AttendanceTable() { Date = date,Status = new Dictionary<string,string> (EmpStatus)});
                 EmpStatus.Clear();
-                turn += 1;
-            }
-
-
-            
-            foreach(var a in AttendanceBody)
-            {
-                Debug.WriteLine("");
-                Debug.WriteLine(a.Date);
-                foreach (KeyValuePair<string, string> item in a.Status)
-                {                    
-                    Debug.WriteLine("Key: {0}, Value: {1}", item.Key, item.Value);
-                }
             }
 
             return View(AttendanceBody);
