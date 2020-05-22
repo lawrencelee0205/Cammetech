@@ -1,3 +1,4 @@
 use v3x
-truncate table dbo.Attendance
+select * from dbo.Attendance
+order by Date
 go

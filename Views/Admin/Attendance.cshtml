@@ -86,7 +86,7 @@
         for (var i = 1; i < table.rows.length; i++) {
 
             var row = table.rows[i]
-            var x = row.cells[0].childNodes[0]["wholeText"]
+            var date = row.cells[0].childNodes[0]["wholeText"]
             var y = row.cells[1].childNodes[0]["options"]["selectedIndex"]
 
             var status = options[y]
@@ -96,7 +96,7 @@
             var e = document.getElementById("empId");
             var empId = e.options[e.selectedIndex].value;
     
-            mydata["Date"] = x
+            mydata["Date"] = new Date(date);
             mydata["EmployeeId"] = parseInt(empId)
             mydata["Status"] = status
 

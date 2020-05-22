@@ -8,7 +8,7 @@ using v3x.Models;
 using v3x.Data;
 using System.Collections.Generic;
 using System.Diagnostics;
-
+using System;
 
 namespace v3x.Controllers
 {
@@ -37,6 +37,8 @@ namespace v3x.Controllers
 
             foreach (var a in attendance)
             {
+                a.Date = a.Date.AddDays(1);
+                Debug.WriteLine(a.Date);
                 _context.Add(a);
                 await _context.SaveChangesAsync();
             }
@@ -71,37 +73,36 @@ namespace v3x.Controllers
            
             var emp = (from p in _context.People
                        join a in _context.Attendance
-                       on p.Id equals a.EmployeeId
-                       where p.Role == "employee"
+                       on p.Id equals a.EmployeeId                       
                        select new { 
                             Name = p.Name,
                             Date = a.Date,
                             Status = a.Status
-                       });
+                       }).ToList();
 
             ViewData["EmpName"] =  _context.People
                                   .OrderBy(p => p.Id)
                                   .Where(p => p.Role == "employee")
                                   .Select(p => p.Name).ToList();
 
-            List<string> Unique_date = emp.OrderBy(e => e.Date).Select(e => e.Date).Distinct().ToList();
-            
+            List<DateTime> Unique_date = _context.Attendance.Select(e => e.Date).OrderBy(e => e.Date).Distinct().ToList();
+
+
             foreach(var date in Unique_date)
             {
-                var current_attendance = emp.Where(e => e.Date == date).ToList();
+                var current_attendance = emp.Where(e => e.Date.ToShortDateString() == date.ToShortDateString()).ToList();
+                Debug.Write("Date: " + date);
 
-                Debug.WriteLine("Date: " + date);
-
-                foreach(var a in current_attendance)
+                foreach (var a in current_attendance)
                 {
-                   
+                    Debug.Write(" " + a.Date);
                     EmpStatus.Add(a.Name,a.Status);                   
                 }
-
-                AttendanceBody.Add(new AttendanceTable() { Date = date,Status = new Dictionary<string,string> (EmpStatus)});
+                Debug.WriteLine(" ");
+                AttendanceBody.Add(new AttendanceTable() { Date = date.ToShortDateString(),Status = new Dictionary<string,string> (EmpStatus)});
                 EmpStatus.Clear();
             }
-
+            
             return View(AttendanceBody);
         }
 
