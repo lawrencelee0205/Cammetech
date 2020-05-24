@@ -34,15 +34,35 @@ namespace v3x.Controllers
         public async Task<IActionResult> AddAttendance([FromBody] List<Attendance> attendance)
         {
             var result = attendance.Count();
-
+            var date_in_context = await _context.Attendance.Select(a => a.Date.ToShortDateString()).ToListAsync();
+           
             foreach (var a in attendance)
             {
-                a.Date = a.Date.AddDays(1);
-                Debug.WriteLine(a.Date);
-                _context.Add(a);
-                await _context.SaveChangesAsync();
-            }
 
+                if ( date_in_context.Contains(a.Date.AddDays(1).ToShortDateString()))
+                {
+                    DateTime dt;
+                    var date = DateTime.TryParse(a.Date.AddDays(1).ToShortDateString(), out dt);
+                    Debug.WriteLine("This date is already exists");
+                    Debug.WriteLine($"Record {date} {a.Status} {a.EmployeeId}");
+                    var exist_record = await _context.Attendance.FirstAsync(r => r.EmployeeId == a.EmployeeId && r.Date == dt);
+
+                    exist_record.Status = a.Status;
+
+                    
+                    Debug.WriteLine($"Existing record {exist_record.EmployeeId} {exist_record.Date} {exist_record.Status}");
+                }
+                else 
+                {
+                    a.Date = a.Date.AddDays(1);
+                    _context.Add(a);
+                }
+                await _context.SaveChangesAsync();
+                a.Date = a.Date.AddDays(1);                
+                
+                
+            }
+            
             return Json(result);
         }
 
@@ -91,14 +111,14 @@ namespace v3x.Controllers
             foreach(var date in Unique_date)
             {
                 var current_attendance = emp.Where(e => e.Date.ToShortDateString() == date.ToShortDateString()).ToList();
-                Debug.Write("Date: " + date);
+                
 
                 foreach (var a in current_attendance)
                 {
-                    Debug.Write(" " + a.Date);
+                
                     EmpStatus.Add(a.Name,a.Status);                   
                 }
-                Debug.WriteLine(" ");
+                
                 AttendanceBody.Add(new AttendanceTable() { Date = date.ToShortDateString(),Status = new Dictionary<string,string> (EmpStatus)});
                 EmpStatus.Clear();
             }
