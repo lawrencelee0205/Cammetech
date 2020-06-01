@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "Profile";
     Layout = "_Profile";
+     var Name = Context.Session.GetString("Session_Name");
 }
 
 <h1>Profile</h1>
-<p>Username: @Html.DisplayFor(mode => Model.Name)</p>
+<p>Username: @Name</p>
 
 
 

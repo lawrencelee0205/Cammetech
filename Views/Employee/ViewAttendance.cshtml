@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<v3x.Models.EmployeeAttendanceView>
+@{
+    ViewData["Title"] = "ViewAttendance";
+    Layout = "_Profile";
+}
+
+<h1>View Attendance</h1>
+
+<div>
+    <form asp-action="ViewAttendance" asp-controller="Employee">
+        Start date: <input type="date" id="start_date" name="startDate" />
+        End date: <input type="date" id="end_date" name="endDate" />
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<p>@ViewBag.message</p>
+
+<table class="attendance">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
