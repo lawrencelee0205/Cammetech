@@ -39,29 +39,43 @@ namespace v3x.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Login(string Name, string Password)
-        {            
+        {
 
             var people = await _context.People.FirstOrDefaultAsync(m => m.Name == Name && m.Password == Password);
 
-            if(people==null)
+            if (people == null)
             {
-                Response.WriteAsync("<script>alert('Invalid user or password')</script>");
+                await Response.WriteAsync("<script>alert('Invalid user or password')</script>");
                 return View("Index");
             }
 
-            HttpContext.Session.SetInt32("Session_Id", people.Id);
-            HttpContext.Session.SetString("Session_Role", people.Role);
+            var role = people.Role.ToUpper();
+
+            HttpContext.Session.SetString("Session_Role", role);
             HttpContext.Session.SetString("Session_Name", people.Name);
 
-            var role = char.ToUpper(people.Role[0]) + people.Role.Substring(1);
 
-            return View($"../{role}/Index", people);
+            switch (role)
+            {
+                case "SUPERADMIN":
+                    return RedirectToAction("Index", "Superadmin");
+
+                case "ADMIN":
+                    return RedirectToAction("Index", "Admin");
+
+                case "EMPLOYEE":
+                    return RedirectToAction("Index", "Employee");
+
+                default:
+                    return View("Index");
+            }
+
 
         }
 
         public IActionResult Logout()
         {
-            
+
             HttpContext.Session.Clear();
 
             foreach (var cookie in Request.Cookies.Keys)

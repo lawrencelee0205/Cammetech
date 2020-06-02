@@ -24,11 +24,11 @@ namespace v3x.Models
         public string Tel { get; set; }
 
         [Required]
-        
+
         public string Nationality { get; set; }
         public string DateOfBirth { get; set; }
         public string Address { get; set; }
-        
 
+        public Job Job { get; set; }
     }
 }

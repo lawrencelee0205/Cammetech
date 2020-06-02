@@ -1,0 +1,91 @@
+﻿@model v3x.Models.PaySlipView
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_Profile";
+}
+
+<h2>View PaySlip</h2>
+<div>
+    <form asp-action="PaySlip" method="get">
+        <select asp-for="paySlipDate" asp-items="Model.Date" id="paySlipDate">
+            <option>Pay Slip Date</option>
+        </select>
+        <input type="submit" value="Go" />
+    </form>
+</div>
+@if (Model.Name != null)
+{
+    <br />
+    <br />
+    <div>
+        <div class="card-header text-center">
+            <b>V3X Company</b>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Name:</th>
+                        <th></th>
+                        <th>@Html.DisplayFor(model => model.PaySlip.Job.People.Name)</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Position:</th>
+                        <th></th>
+                        <th>@Html.DisplayFor(model => model.PaySlip.Job.Position)</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <th></th>
+                        <th>@Html.DisplayFor(model => model.PaySlip.Job.People.Address)</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Basic:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.Basic)</th>
+                        <th>EPF:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.EmployeeEPF)</th>
+                    </tr>
+                    <tr>
+                        <th>Bonus:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.Bonus)</th>
+                        <th>CompanyEPF:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.EmployerEPF)</th>
+                    </tr>
+                    <tr>
+                        <th>AdvancePay:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.AdvancePay)</th>
+                        <th>SOCSO:</th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.EmployeeSocso)</th>
+                    </tr>
+                    <tr>
+                        <th>NetSalary:</th>
+                        <th></th>
+                        <th>RM @Html.DisplayFor(model => model.PaySlip.NetSalary)</th>
+                        <th></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form asp-action="PdfPaySlip">
+                @Html.HiddenFor(model => model.PaySlip.Job.People.Name)
+                @Html.HiddenFor(model => model.PaySlip.Job.Position)
+                @Html.HiddenFor(model => model.PaySlip.Job.People.Address)
+                @Html.HiddenFor(model => model.PaySlip.Basic)
+                @Html.HiddenFor(model => model.PaySlip.EmployeeEPF)
+                @Html.HiddenFor(model => model.PaySlip.Bonus)
+                @Html.HiddenFor(model => model.PaySlip.EmployerEPF)
+                @Html.HiddenFor(model => model.PaySlip.AdvancePay)
+                @Html.HiddenFor(model => model.PaySlip.EmployeeSocso)
+                @Html.HiddenFor(model => model.PaySlip.NetSalary)
+                @Html.HiddenFor(model => model.PaySlip.Date)
+                <button type="submit" class="btn btn-primary btn-block">Download As PDF</button>
+            </form>
+        </div>
+    </div>
+ }
+
+

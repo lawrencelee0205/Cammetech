@@ -13,6 +13,8 @@ namespace v3x.Models
         public double BasePay { get; set; }
         public string Position { get; set; }
         public int PeopleId { get; set; }
+        public People People { get; set; }
+        public PaySlip PaySlip { get; set; }
 
     }
 }

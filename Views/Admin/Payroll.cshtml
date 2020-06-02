@@ -1,0 +1,74 @@
+﻿@model List<v3x.Models.PaySlip>
+@{
+    ViewData["Title"] = "Salary";
+    Layout = "_Profile";
+    DateTime now = DateTime.Now;
+    string current = now.ToString("MMMM yyyy");
+    ViewData["now"] = current;
+}
+
+<h2>Salary</h2>
+<p>@ViewData["now"]</p>
+<p>Employee List</p>
+    <div class="row">
+        <div class="col-sm-12">
+            <form asp-action="PaySave" method="post">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.HiddenFor(x => x[i].JobId)
+                    @Html.HiddenFor(x => x[i].Date)
+                    <table class="table table-bordered table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Model[i].Job.People.Name</th>
+                                <th>RM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Id: @Model[i].Job.People.Id</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Basic</td>
+                                <td><input asp-for="@Model[i].Basic" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Bonus</td>
+                                <td><input asp-for="@Model[i].Bonus" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Employee EPF</td>
+                                <td><input asp-for="@Model[i].EmployeeEPF" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Company EPF</td>
+                                <td><input asp-for="@Model[i].EmployerEPF" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Employee SOCSO</td>
+                                <td><input asp-for="@Model[i].EmployeeSocso" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Company SOCSO</td>
+                                <td><input asp-for="@Model[i].EmployerSocso" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Advance Pay</td>
+                                <td><input asp-for="@Model[i].AdvancePay" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Net Salary</td>
+                                <td><input asp-for="@Model[i].NetSalary" class="form-control" readonly /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+

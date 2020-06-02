@@ -22,28 +22,34 @@
                         var role = Context.Session.GetString("Session_Role");
                         switch (role)
                         {
-                            case "admin":
-                                        <ul class="navbar-nav flex-grow-1">
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Profile</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EmployeeTable">Employee</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AttendanceTable">Report</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Attendance">Attendance</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-                                            </li>
-                                        </ul>
+                            case "ADMIN":
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EmployeeTable">Employee</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AttendanceTable">Report</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Attendance">Attendance</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="DoSalary">Salary</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="PaySlip">PaySlip</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Logout">Logout</a>
+                                    </li>
+                                </ul>
                                 <h3>Admin</h3>
                                 break;
 
-                            case "superadmin":
+                            case "SUPERADMIN":
 
                                 <ul class="navbar-nav flex-grow-1">
                                     <li class="nav-item">
@@ -65,16 +71,19 @@
                                 <h3>Super Admin</h3>
                                 break;
 
-                            case "employee":
+                            case "EMPLOYEE":
                                 <ul class="navbar-nav flex-grow-1">
                                     <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Profile</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="ViewAttendance">Attendance</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Attendance</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="PaySlip">PaySlip</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Logout">Logout</a>
                                     </li>
                                 </ul>
                                 <h3>Employee</h3>
