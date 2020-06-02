@@ -64,6 +64,7 @@ namespace v3x.Controllers
 
             foreach (var a in attendance)
             {
+                a.Date = a.Date.AddDays(1);
                 _context.Add(a);
                 await _context.SaveChangesAsync();
             }

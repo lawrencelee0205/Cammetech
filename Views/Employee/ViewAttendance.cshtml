@@ -16,7 +16,8 @@
 </div>
 
 <p>@ViewBag.message</p>
-
+@if (Model != null)
+{
 <table class="attendance">
     <thead>
         <tr>
@@ -42,3 +43,4 @@
         }
     </tbody>
 </table>
+}

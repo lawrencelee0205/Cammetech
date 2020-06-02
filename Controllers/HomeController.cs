@@ -53,6 +53,7 @@ namespace v3x.Controllers
 
             HttpContext.Session.SetString("Session_Role", role);
             HttpContext.Session.SetString("Session_Name", people.Name);
+            HttpContext.Session.SetInt32("Session_Id",people.Id);
 
 
             switch (role)

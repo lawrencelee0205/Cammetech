@@ -157,6 +157,12 @@ namespace v3x.Controllers
             }
         }
 
+        public IActionResult Attendance()
+        {
+            return View("ViewAttendance");
+        }
+
+
         public async Task<IActionResult> ViewAttendance(DateTime startDate, DateTime endDate)
         {
             if (HttpContext.Session.GetString("Session_Role") == veryrole)
@@ -165,63 +171,73 @@ namespace v3x.Controllers
                 //Retreive use id
                 var empId = HttpContext.Session.GetInt32("Session_Id");
 
-                //Retrive data 
+                //Retrive relevant data 
                 var emp = await _context.Attendance.Where(e => e.EmployeeId == empId).ToListAsync();
+
+                foreach (var e in emp)
+                {
+                    Debug.WriteLine($"Date {e.Date} {e.Status}");
+                }
 
                 //Declare model to hold the retrieved data
                 IList<EmployeeAttendanceView> view = new List<EmployeeAttendanceView>();
 
                 //Check whether user got choose date or not
                 //Default startDate is 1/1/0001
-                //If we don't do this, it will compare the default date to your DB data, backend will loop and consume your time to load the page.
+                //If we don't do this, it will compare the default date to your DB data, 
+                //backend will loop and consume your time to load the page.
                 //So, we only want to compare the chosen date instead of default date.
                 if (startDate.ToString("M/d/yyyy") != "1/1/0001")
                 {
-                    DateTime firstdate = emp[0].Date;
-                    int res1 = DateTime.Compare(startDate, firstdate);
-                    int res2 = DateTime.Compare(endDate, firstdate);
-                    int res = DateTime.Compare(startDate, endDate);
+                    DateTime firstDate = emp[0].Date;
+                    int sD_fD = DateTime.Compare(startDate.Date, firstDate.Date);
+                    int sD_eD = DateTime.Compare(startDate.Date, endDate.Date);
+                    int sD_lD = DateTime.Compare(startDate.Date, emp[emp.Count - 1].Date.Date);
 
-                    //First condition
-                    if (res1 < 0 && res2 < 0)//Check whether the startDate and endDate is located between the existing date or not
+                    int eD_fD = DateTime.Compare(endDate.Date, firstDate.Date);
+                    int eD_lD = DateTime.Compare(endDate.Date, emp[emp.Count - 1].Date.Date);
+
+                    Debug.WriteLine($"sD_fD: {startDate.Date} {firstDate.Date} {sD_fD} ");
+                    Debug.WriteLine($"eD_fD: {endDate.Date} {firstDate.Date} {eD_fD} ");
+                    Debug.WriteLine($"sD_eD: {startDate.Date} {endDate.Date} {sD_eD} ");
+
+                    if ((sD_eD <= 0) && ((sD_fD < 0 && eD_fD < 0) || (eD_lD > 0 && sD_lD > 0)))//Out of range
                     {
-                        ViewBag.message = "Not found";
+                        ViewBag.message = "Out of range";
                     }
-                    else if (res > 0)
+                    else if (sD_eD > 0)//end date is smaller than start date
                     {
                         ViewBag.message = "Invalid range";
                     }
                     else
                     {
-                        //Loop each data in emp into view
-                        foreach (var e in emp)
-                        {
-                            DateTime date = e.Date;
-                            string status = e.Status;
-                            int res3 = DateTime.Compare(startDate, date);
-                            int res4 = DateTime.Compare(startDate, endDate);
-                            //second condition
-                            if (res3 <= 0 && res4 <= 0)//Check whether the startDate is smaller than the first e.Date
-                            {
-                                while (res3 < 0)//If startDate smaller than the first e.Date, loop the startDate to match the first e.Date
-                                {
-                                    startDate = startDate.AddDays(1);
-                                    res3 = DateTime.Compare(startDate, date);
-                                }
-                                view.Add(new EmployeeAttendanceView { Date = date.ToString("M/d/yyyy"), Status = status });  //If startDate <= e.Date, then add it into view.
-                                startDate = startDate.AddDays(1);
+                        int startIndex = 0;
+                        int endIndex = 0;
 
-                            }
-                            //Third condition
-                            else if (res3 >= 0 && res4 <= 0) //If startDate >= e.Date and startDate <= endDate
-                            {
-                                //Fourth condition
-                                if (startDate == date)//If startDate == e.Date, then add it into view.Else, we do nothing (No need declare 'else')
-                                {
-                                    view.Add(new EmployeeAttendanceView { Date = date.ToString("M/d/yyyy"), Status = status });
-                                    startDate = startDate.AddDays(1);
-                                }
-                            }
+                        if (sD_fD<=0)
+                        {
+                            startIndex = 0;
+                        }
+                        else
+                        {
+                            startIndex = emp.IndexOf(emp.Find(e => e.Date.Date == startDate.Date));
+                        }
+
+                        if(eD_lD>=0)
+                        {
+                            endIndex = emp.Count - 1;
+                        }
+                        else
+                        {
+                            endIndex = emp.IndexOf(emp.Find(e => e.Date.Date == endDate.Date));
+                        }
+                        
+                        
+
+                        for (int x = startIndex; x <= endIndex; x++)
+                        {
+                            var e = emp[x];
+                            view.Add(new EmployeeAttendanceView { Date = e.Date.ToShortDateString(), Status = e.Status });
                         }
                     }
                 }
