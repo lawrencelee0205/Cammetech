@@ -197,10 +197,6 @@ namespace v3x.Controllers
                     int eD_fD = DateTime.Compare(endDate.Date, firstDate.Date);
                     int eD_lD = DateTime.Compare(endDate.Date, emp[emp.Count - 1].Date.Date);
 
-                    Debug.WriteLine($"sD_fD: {startDate.Date} {firstDate.Date} {sD_fD} ");
-                    Debug.WriteLine($"eD_fD: {endDate.Date} {firstDate.Date} {eD_fD} ");
-                    Debug.WriteLine($"sD_eD: {startDate.Date} {endDate.Date} {sD_eD} ");
-
                     if ((sD_eD <= 0) && ((sD_fD < 0 && eD_fD < 0) || (eD_lD > 0 && sD_lD > 0)))//Out of range
                     {
                         ViewBag.message = "Out of range";
