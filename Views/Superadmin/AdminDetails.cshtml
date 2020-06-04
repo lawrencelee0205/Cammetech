@@ -1,0 +1,42 @@
+﻿@model v3x.Models.People
+@{
+    ViewData["Title"] = "AdminDetails";
+}
+
+<h2>AdminDetails</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@Model.Email</td>
+        </tr>
+        <tr>
+            <td>Contact No</td>
+            <td>@Model.Tel</td>
+        </tr>
+        <tr>
+            <td>Nationality</td>
+            <td>@Model.Nationality</td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td>@Model.DateOfBirth</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Model.Address</td>
+        </tr>        
+    </tbody>
+</table>
+<a asp-action="AdminTable">Back</a>
+

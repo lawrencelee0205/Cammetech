@@ -28,8 +28,8 @@
             <td>@ad.Tel</td>
             <td>@ad.Email</td>
             <td>
-            <a >Edit</a> |
-            <a >Details</a> | 
+            <a asp-action="UpdateAdmin" asp-route-id="@ad.Id">Edit</a> |
+            <a asp-action="AdminDetails" asp-route-id="@ad.Id">Details</a> | 
             <a asp-action="DeleteAdmin" asp-route-id="@ad.Id">Delete</a>
             </td>
         </tr>

@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<v3x.Models.AttendanceTable>
+@{
+    ViewData["Title"] = "AttendanceList";
+    Layout = "_Profile";
+}
+<h2>Attendance List</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            @foreach (var emp in ViewData["EmpName"] as List<string>)
+            {
+                <th>
+                    @emp
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            @foreach (var emp in ViewData["EmpName"] as List<string>)
+            {
+
+                if(item.Status.ContainsKey(emp))
+                {
+                    <td>
+                        @item.Status[emp]
+                    </td>
+                }
+                else 
+                { 
+                    <td>
+
+                    </td>
+                }
+
+            }
+
+        </tr>
+
+
+
+        }
+    </tbody>
+</table>
+

@@ -361,3 +361,6 @@ C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Selec
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Select.Tools.dep
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\bin\Debug\netcoreapp3.1\Select.HtmlToPdf.dll
 C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\v3x.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\AdminDetails.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\UpdateAdmin.cshtml.g.cs
+C:\Users\lawre\Desktop\Assignment\AppDev\Cammetech\obj\Debug\netcoreapp3.1\Razor\Views\Superadmin\AttendanceTable.cshtml.g.cs

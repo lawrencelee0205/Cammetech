@@ -61,12 +61,27 @@ namespace v3x.Controllers
         public async Task<IActionResult> AddAttendance([FromBody] List<Attendance> attendance)
         {
             var result = attendance.Count();
+            var attendance_record = _context.Attendance.Where(e => e.EmployeeId == attendance[0].EmployeeId);
+            var date = attendance_record.Select(a => a.Date.ToShortDateString()).ToList();
+            var empId = attendance[0].EmployeeId;
 
             foreach (var a in attendance)
             {
-                a.Date = a.Date.AddDays(1);
-                _context.Add(a);
-                await _context.SaveChangesAsync();
+                var input_date = a.Date.AddDays(1).Date;
+                if(date.Contains(input_date.ToShortDateString()))
+                {
+                    Debug.WriteLine($"This part run {input_date}");
+                    var update_row = await attendance_record.FirstAsync(r => r.Date.Date == input_date);
+                    update_row.Status = a.Status;
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    a.Date = a.Date.AddDays(1);
+                    _context.Add(a);
+                    await _context.SaveChangesAsync();
+                }
+                
             }
 
             return Json(result);
