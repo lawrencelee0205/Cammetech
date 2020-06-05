@@ -174,11 +174,6 @@ namespace v3x.Controllers
                 //Retrive relevant data 
                 var emp = await _context.Attendance.Where(e => e.EmployeeId == empId).ToListAsync();
 
-                foreach (var e in emp)
-                {
-                    Debug.WriteLine($"Date {e.Date} {e.Status}");
-                }
-
                 //Declare model to hold the retrieved data
                 IList<EmployeeAttendanceView> view = new List<EmployeeAttendanceView>();
 
@@ -210,14 +205,11 @@ namespace v3x.Controllers
                         int startIndex = 0;
                         int endIndex = 0;
 
-                        if (sD_fD<=0)
-                        {
-                            startIndex = 0;
-                        }
-                        else
+                        if (sD_fD>0)
                         {
                             startIndex = emp.IndexOf(emp.Find(e => e.Date.Date == startDate.Date));
                         }
+                        
 
                         if(eD_lD>=0)
                         {
@@ -227,8 +219,6 @@ namespace v3x.Controllers
                         {
                             endIndex = emp.IndexOf(emp.Find(e => e.Date.Date == endDate.Date));
                         }
-                        
-                        
 
                         for (int x = startIndex; x <= endIndex; x++)
                         {

@@ -1,7 +1,83 @@
-﻿
+﻿@model IEnumerable<v3x.ViewModel.SuperadminReport>
 @{
     ViewData["Title"] = "Report";
+    Layout = "_Profile";
 }
 
-<h1>Report</h1>
+<h2>Report</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdvancePay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bonus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Basic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeEPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployerEPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeSocso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployerSocso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdvancePay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Basic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeEPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployerEPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeSocso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployerSocso)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
 

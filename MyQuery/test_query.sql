@@ -1,3 +1,4 @@
 use v3x
-truncate table dbo.Attendance
+SELECT column_name FROM information_schema.columns WHERE table_name = 'PaySlip';
 go
+
