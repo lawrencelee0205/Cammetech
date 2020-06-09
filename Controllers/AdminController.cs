@@ -339,7 +339,7 @@ namespace v3x.Controllers
                 .Include(x => x.People)
                 .Select(j => new PaySlip
                 {
-                    Basic = j.BasePay * 28,
+                    Basic = j.BasePay ,
                     //Date = new DateTime(2019, 3, 1, 7, 0, 0),
                     Date = DateTime.Now,
                     Job = j,
