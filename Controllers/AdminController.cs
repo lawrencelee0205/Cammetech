@@ -731,6 +731,15 @@ namespace v3x.Controllers
                         .Where(x => x.Date.Year == parsedDate.Year && x.Date.Month == parsedDate.Month)
                         .FirstOrDefault();
 
+                    paySlip.NetSalary = Math.Round(paySlip.NetSalary,2);
+                    paySlip.Basic = Math.Round(paySlip.Basic, 2);
+                    paySlip.EmployeeEPF = Math.Round(paySlip.EmployeeEPF, 2);
+                    paySlip.EmployerEPF = Math.Round(paySlip.EmployerEPF, 2);
+                    paySlip.Bonus = Math.Round(paySlip.Bonus, 2);
+                    paySlip.AdvancePay = Math.Round(paySlip.AdvancePay, 2);
+                    paySlip.EmployeeSocso = Math.Round(paySlip.EmployeeSocso, 2);
+                    paySlip.EmployerSocso = Math.Round(paySlip.EmployerSocso, 2);
+
                     //var empId = _context.People.Where(p => p.Name == Name).Select(e => e.Id).FirstOrDefault();
                     //var jobId = _context.Job.Where(j => j.PeopleId == empId).Select(j => j.JobId).FirstOrDefault();
                     //var paySlip = _context.PaySlip
@@ -739,6 +748,7 @@ namespace v3x.Controllers
                     //    .FirstOrDefault();
                     var date = _context.PaySlip.Select(d => d.Date.ToString("MMMM yyyy")).Distinct();
                     var empName = _context.People.Where(e => e.Role == "employee").Select(e => e.Name);
+
                     paySlipView = new PaySlipView
                     {
                         PaySlip = paySlip,

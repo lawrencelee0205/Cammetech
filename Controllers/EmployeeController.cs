@@ -184,34 +184,33 @@ namespace v3x.Controllers
                 //So, we only want to compare the chosen date instead of default date.
                 if (startDate.ToString("M/d/yyyy") != "1/1/0001")
                 {
+                    Debug.WriteLine($"Range: { startDate <= endDate }");
                     DateTime firstDate = emp[0].Date;
-                    int sD_fD = DateTime.Compare(startDate.Date, firstDate.Date);
-                    int sD_eD = DateTime.Compare(startDate.Date, endDate.Date);
-                    int sD_lD = DateTime.Compare(startDate.Date, emp[emp.Count - 1].Date.Date);
+                    DateTime lastDate = emp[emp.Count - 1].Date.Date;
 
-                    int eD_fD = DateTime.Compare(endDate.Date, firstDate.Date);
-                    int eD_lD = DateTime.Compare(endDate.Date, emp[emp.Count - 1].Date.Date);
+                    Debug.WriteLine($"EF: { endDate < firstDate }");
+                    Debug.WriteLine($"SL: { startDate > lastDate }");
 
-                    if ((sD_eD <= 0) && ((sD_fD < 0 && eD_fD < 0) || (eD_lD > 0 && sD_lD > 0)))//Out of range
-                    {
-                        ViewBag.message = "Out of range";
-                    }
-                    else if (sD_eD > 0)//end date is smaller than start date
+                    if (startDate > endDate)
                     {
                         ViewBag.message = "Invalid range";
+                    }
+                    else if((startDate <= endDate) && ( (endDate < firstDate) || (startDate > lastDate ) ))
+                    {
+                        ViewBag.message = "Out of range";
                     }
                     else
                     {
                         int startIndex = 0;
                         int endIndex = 0;
 
-                        if (sD_fD>0)
+                        if (startDate > firstDate)
                         {
                             startIndex = emp.IndexOf(emp.Find(e => e.Date.Date == startDate.Date));
                         }
                         
 
-                        if(eD_lD>=0)
+                        if(endDate >= lastDate)
                         {
                             endIndex = emp.Count - 1;
                         }
