@@ -843,7 +843,7 @@ namespace v3x.Controllers
                 pdfStream.Position = 0;
 
                 // create email message
-                MailMessage message = new MailMessage("sulphate1997@gmail.com", email);
+                MailMessage message = new MailMessage("v3x2021@gmail.com", email);
                 //message.From = new MailAddress("otj_1997@hotmail.com");
                 //message.To.Add(new MailAddress(email));
                 message.Subject = "Payroll";
@@ -855,7 +855,7 @@ namespace v3x.Controllers
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
 
-                NetworkCredential nc = new NetworkCredential("sulphate1997@gmail.com", "noob1997");
+                NetworkCredential nc = new NetworkCredential("v3x2021@gmail.com", "v3xthebest");
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = nc;
 
